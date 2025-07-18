@@ -32,6 +32,16 @@ By working through this template, you will understand:
 2. Note your project endpoint URL  
 3. Ensure you have appropriate permissions
 
+### 1.5. Model Deployment Setup
+Before creating AI agents, you need a deployed model:
+1. **Navigate to Models** in your Azure AI Foundry project
+2. **Deploy a model** from the catalog (check Microsoft documentation for supported models)
+3. **Note the deployment name** (this will be used in your code configuration)
+4. **Verify deployment status** and ensure sufficient quota is allocated
+5. **Test model accessibility** from your project
+
+⚠️ **Important**: Not all deployable models are supported by Azure AI Foundry Agent Service.
+
 ### 2. Azure App Registration (Service Principal)
 1. Go to **Azure Portal** → **Microsoft Entra ID** → **App registrations**
 2. Create **New registration** with a descriptive name
@@ -61,25 +71,31 @@ os.environ["AZURE_CLIENT_ID"] = "your-actual-client-id"
 os.environ["AZURE_TENANT_ID"] = "your-actual-tenant-id"          
 os.environ["AZURE_CLIENT_SECRET"] = "your-actual-client-secret"      
 project_endpoint = "https://your-resource.services.ai.azure.com/api/projects/your-project"
+
+# Model Configuration - Use models verified to work with Agent Service
+model_deployment_name = "your-model-deployment-name"  # Use verified models like gpt-4o-mini, gpt-4o, etc.
 ```
 
 ⚠️ **Security Note:** These are placeholder values in the template. Replace them with your actual Azure credentials. Never commit real credentials to version control!
 
 ## 🚀 Quick Start
 
-### **Cloud Environments (Recommended)**
+### **Cloud Environments**
 
 #### **Azure ML Studio:**
-1. Upload `azure_ai_agent.ipynb` to your Azure ML workspace
-2. Install dependencies: `!pip install azure-ai-projects azure-identity`
-3. Replace credential placeholders with your Azure values
-4. Run the notebook step by step
+1. Open terminal in Azure ML Studio
+2. Clone repository: `git clone https://github.com/jojidemillo/azure-ai-agent-demo.git`
+3. Navigate to folder and open `azure_ai_agent.ipynb`
+4. Install dependencies: `!pip install azure-ai-projects azure-identity`
+5. Replace credential placeholders with your Azure values
+6. Run the notebook step by step
 
 #### **Google Colab:**
-1. Upload `azure_ai_agent.ipynb` to Google Colab
-2. Install dependencies: `!pip install azure-ai-projects azure-identity`
-3. Replace credential placeholders with your Azure values
-4. Run the notebook step by step
+1. Clone repository: `!git clone https://github.com/jojidemillo/azure-ai-agent-demo.git`
+2. Navigate to the cloned folder and open `azure_ai_agent.ipynb`
+3. Install dependencies: `!pip install azure-ai-projects azure-identity`
+4. Replace credential placeholders with your Azure values
+5. Run the notebook step by step
 
 ### **Local Development**
 
@@ -191,12 +207,12 @@ Experiment with your own scenarios using the built-in testing framework with moc
 3. Update the `execute_function_call()` handler
 4. Test with the interactive lab
 
-### Changing AI Models
-Modify the `AGENT_MODEL` variable to use different models:
-- `gpt-4o` - Latest model, best performance
-- `gpt-4` - Reliable, excellent quality
-- `gpt-4-turbo` - Faster processing
-- `gpt-35-turbo` - Cost-effective option
+### Common OpenAI Model Options Available in Azure:
+**Popular Models (verify compatibility in Microsoft documentation):**
+- **gpt-4o-mini**: Cost-effective, fast
+- **gpt-4o**: Latest model, best performance
+- **gpt-4**: Reliable, excellent quality
+- **gpt-35-turbo**: Older option
 
 ### Custom Instructions
 Update the `AGENT_INSTRUCTIONS` variable to customize agent behavior and personality.
@@ -241,6 +257,13 @@ Update the `AGENT_INSTRUCTIONS` variable to customize agent behavior and persona
 - ✅ Confirm the App Registration has proper permissions on the AI Foundry project
 - ✅ Check that your service principal has "Cognitive Services Data Contributor" role
 - ✅ Ensure your Azure AI Foundry project is accessible
+
+**Model Deployment Issues**
+- ✅ Verify model is supported by Azure AI Foundry Agent Service
+- ✅ Check that model is deployed and running in Azure AI Foundry
+- ✅ Confirm quota limits haven't been exceeded in your subscription
+- ✅ Ensure deployment name (not model name) matches your configuration variable
+- ✅ Validate deployment is accessible from your project region
 
 **Agent Creation Failures**
 - ✅ Verify "Cognitive Services Data Contributor" role is assigned
