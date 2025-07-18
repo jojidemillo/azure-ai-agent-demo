@@ -123,6 +123,7 @@ celerybeat.pid
 
 # Environments
 .env
+.env.*
 .venv
 env/
 venv/
@@ -160,3 +161,63 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+# =============================================================================
+# Azure AI Agent Demo Specific Additions
+# =============================================================================
+
+# Azure credentials and secrets (CRITICAL - NEVER COMMIT THESE)
+.env.local
+.env.development
+.env.staging
+.env.production
+*.key
+secrets.json
+credentials.json
+
+# Azure AI Agent generated files
+agent_logs/
+*.agent
+agent_cache/
+
+# Jupyter notebook outputs and temporary files
+*.ipynb_nbconvert_temp.py
+.jupyter/
+*.ipynb.backup
+
+# OS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Azure specific
+.azure/
+azure.json
+
+# Model and data files (if large)
+*.model
+*.pkl
+*.h5
+*.weights
+
+# Test outputs
+test_outputs/
+screenshots/
+test_results/
